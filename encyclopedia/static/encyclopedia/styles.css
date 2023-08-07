@@ -12,10 +12,10 @@ h1 {
     padding-top: 20px;
 }
 
-textarea {
+/* textarea {
     height: 90vh;
     width: 80%;
-}
+} */
 
 .main {
     padding: 10px;
@@ -31,8 +31,23 @@ textarea {
     background-color: #f0f0f0;
     height: 100vh;
     padding: 20px;
+    padding-left: 20px;
 }
 
 .sidebar h2 {
     margin-top: 5px;
 }
+
+.form-wrapper {
+    display:inline-flex;
+    height: 300px;
+}
+
+.form-article {
+   
+}
+
+.form-textarea {
+    
+}
+

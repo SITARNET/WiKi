@@ -45,8 +45,31 @@ def search_article(request):
         if len(articles) == 0:
             return HttpResponseRedirect(reverse("article", args=(article_name, )))
         return helper(request, articles)
+
+
+class FormArticle(forms.Form):
+    title = forms.CharField(label="Title", max_length=30, widget=forms.TextInput(attrs={'class': 'form-article'}))
+    article = forms.CharField(label="Article", widget=forms.Textarea(attrs={'class': 'form-textarea'}))
+
     
-    
+def new_article(request):
+    if request.method == "POST":
+        form = FormArticle(request.POST)
+        if form.is_valid():
+            article_title = form.cleaned_data["title"]
+            article_content = form.cleaned_data["article"]
+            util.save_entry(article_title, article_content)
+
+            return HttpResponseRedirect(reverse("index"))
+        else:
+            return render(request, "encyclopedia/new_article.html", {
+                "form": form
+            })
+
+    return render(request, "encyclopedia/new_article.html", {
+        "form": FormArticle()
+    })
+
 
     
 
