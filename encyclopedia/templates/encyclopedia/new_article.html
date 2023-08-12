@@ -6,6 +6,7 @@
 
 {% block body %}
    <h1>New article</h1>
+   <h2>{{ message }}</h2>
     <form action="{% url 'new_article' %}" method="post" class="form-wrapper">
         {% csrf_token %}
         {{ form }}

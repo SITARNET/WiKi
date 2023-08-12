@@ -55,10 +55,20 @@ class FormArticle(forms.Form):
 def new_article(request):
     if request.method == "POST":
         form = FormArticle(request.POST)
+
         if form.is_valid():
             article_title = form.cleaned_data["title"]
             article_content = form.cleaned_data["article"]
-            util.save_entry(article_title, article_content)
+
+            for entry in util.list_entries():
+                if entry == article_title:
+                    return render(request, "encyclopedia/new_article.html", {
+                        "title": article_title,
+                        "message": f"Name {article_title} of file is alredy exists!",
+                        "form": form
+                    })
+                else:
+                    util.save_entry(article_title, article_content)
 
             return HttpResponseRedirect(reverse("index"))
         else:
