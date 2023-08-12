@@ -53,3 +53,8 @@ input, label {
     width: 300px;
     font-weight: bold;
 }
+
+.edit-article {
+    border-radius: 5px;
+    font-weight: bold;
+}

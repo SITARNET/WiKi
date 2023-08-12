@@ -81,6 +81,28 @@ def new_article(request):
     })
 
 
+class FormEditArticle(forms.Form):
+    article = forms.CharField(label="Article", widget=forms.Textarea(attrs={'class': 'form-textarea'}))
+
+
+def edit_article(request, title):
+    if request.method == "GET":
+        article = util.get_entry(title)
+        form = FormEditArticle({
+                "article": article
+            })
+
+        return render(request, "encyclopedia/edit_article.html", {
+                    "title": title,
+                    "form": form
+                })
+    else:
+        form = FormEditArticle(request.POST)
+        if form.is_valid():
+            article_content = form.cleaned_data["article"]
+            util.save_entry(title, article_content)
+            return HttpResponseRedirect(f"/wiki/{title}")
+
     
 
 

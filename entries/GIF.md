@@ -1,2 +1,3 @@
 # GIF
-Grathic image format
+
+Grathic image format 1

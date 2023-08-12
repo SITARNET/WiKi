@@ -6,4 +6,5 @@
 
 {% block body %}
     <p>{{ article | safe }}</p>
+    <p><a href="{% url 'edit_article' title %}"><button class="edit-article">Edit article</button></a></p>
 {% endblock %}
