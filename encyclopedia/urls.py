@@ -10,6 +10,7 @@ urlpatterns = [
     path("search/", views.search_article, name="search"),
     path("new_article/", views.new_article, name="new_article"),
     path("edit_article/<str:title>", views.edit_article, name="edit_article"),
+    path("random_article/", views.random_article, name="random_article"),
 ]
 
 

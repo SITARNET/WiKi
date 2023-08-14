@@ -1,3 +1,4 @@
+import random
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse
@@ -102,6 +103,14 @@ def edit_article(request, title):
             article_content = form.cleaned_data["article"]
             util.save_entry(title, article_content)
             return HttpResponseRedirect(f"/wiki/{title}")
+        
+
+
+def random_article(request):
+    articles = util.list_entries()
+    random_articles = random.choice(articles)
+    return HttpResponseRedirect(reverse("article", args=(random_articles, )))
+
 
     
 
